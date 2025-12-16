@@ -4,7 +4,7 @@
 # 机场订阅
 proxy-providers:
   Main:
-    url: "https://bsn.ewpbh.cn/api/v1/client/subscribe?token=8d946d62be4b0b24bc0d2fdd22da7e10"
+    url: ""
     type: http
     interval: 86400
     health-check:
@@ -14,7 +14,7 @@ proxy-providers:
     proxy: 直连
 
   Cheap:
-    url: "https://sub-bgexcvnexg.cn-hongkong.fcapp.run/sub/dbcf12dfa24918e2/clash"
+    url: ""
     type: http
     interval: 86400
     health-check:
