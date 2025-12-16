@@ -114,7 +114,7 @@ dns:
 # 如果相应分组没有筛选到对应的国家，请根据自己节点名字调整筛选关键字。
 
 proxy-group-anchor:
-  &select_common {type: select, proxies: [🔯 日本故转, 🔯 香港故转, 🔯 狮城故转, 🔯 美国故转, 🔯 日本故转-Cheap, 🔯 香港故转-Cheap, 🔯 美国故转-Cheap, ♻️ 香港自动, ♻️ 日本自动, ♻️ 狮城自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-Cheap, ♻️ 香港自动-Cheap, ♻️ 美国自动-Cheap, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🌐 全部节点, 直连]}
+  select_common: &select_common {type: select, proxies: [🔯 日本故转, 🔯 香港故转, 🔯 狮城故转, 🔯 美国故转, 🔯 日本故转-Cheap, 🔯 香港故转-Cheap, 🔯 美国故转-Cheap, ♻️ 香港自动, ♻️ 日本自动, ♻️ 狮城自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-Cheap, ♻️ 香港自动-Cheap, ♻️ 美国自动-Cheap, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🌐 全部节点, 直连]}
 
 proxy-groups:
   - {name: 🚀 默认代理, <<: *select_common}
