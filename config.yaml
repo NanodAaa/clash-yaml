@@ -1,8 +1,9 @@
-# 必读！！！
+# config.yaml v1.4
 # 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
 # 跑裸核用户请自行去掉下方控制面板模块的注释。
 # 机场订阅
 proxy-providers:
+  # 主要
   Main:
     url: ""
     type: http
@@ -13,6 +14,7 @@ proxy-providers:
       interval: 300
     proxy: 直连
 
+  # 次要
   Cheap:
     url: ""
     type: http
@@ -120,8 +122,7 @@ proxy-groups:
   - {name: 🚀 默认代理, <<: *select_common}
   - {name: 📦 廉价节点, type: select, proxies: [🔯 日本故转-Cheap, 🔯 香港故转-Cheap, 🔯 美国故转-Cheap, ♻️ 香港自动-Cheap, ♻️ 日本自动-Cheap, ♻️ 美国自动-Cheap, ♻️ 自动选择-Cheap, 直连]}
  
-# - {name: 🌐 Cloudflare, <<: *select_common}
- 
+# 下面写应用规则组
   - {name: 📹 YouTube, <<: *select_common}
   - {name: 🍀 Google, <<: *select_common}
   - {name: 🤖 ChatGPT, <<: *select_common}
@@ -132,9 +133,12 @@ proxy-groups:
   - {name: 📲 Telegram, <<: *select_common}
   - {name: 🎥 NETFLIX, <<: *select_common}
   - {name: 💶 PayPal, <<: *select_common}
+  - {name: 🌐 EHentai, <<: *select_common}
 
+# 不要动!
   - {name: 🐟 漏网之鱼, <<: *select_common}
 
+# 下面写节点组
   - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇯🇵 日本节点, type: select, include-all: true, filter: "(?i)日|jp|japan"}
   - {name: 🇸🇬 狮城节点, type: select, include-all: true, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
@@ -161,53 +165,6 @@ proxy-groups:
   - {name: ♻️ 自动选择, type: url-test, use: [Main], tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
   - {name: 🌐 全部节点, type: select, include-all: true}
 
-# 规则匹配
-rules:
-
-# 私有ip和域名直连
-  - RULE-SET,private_ip,直连,no-resolve
-  - RULE-SET,private_domain,直连
-
-# 下面写自定义规则
-  - DOMAIN-SUFFIX,qichiyu.com,🚀 默认代理
-  - DOMAIN,proxy.nanodaaa.net,🚀 默认代理  # 走代理
-  - DOMAIN-SUFFIX,nanodaaa.net,直连  # nanodaaa.net
-  - DOMAIN-SUFFIX,exhentai.org,🔯 美国故转
-  
-# 默认规则
-  - RULE-SET,proxylite,🚀 默认代理
-
-# 下载规则
-  - RULE-SET,game_download,📦 廉价节点
-  - RULE-SET,android_download,📦 廉价节点
-
-#  - RULE-SET,cloudflare,🌐 Cloudflare
-
-#  在这下面写应用规则
-  - RULE-SET,ai,🤖 ChatGPT
-  - RULE-SET,github_domain,👨🏿‍💻 GitHub
-  - RULE-SET,youtube_domain,📹 YouTube
-  - RULE-SET,google_domain,🍀 Google
-  - RULE-SET,onedrive_domain,🐬 OneDrive
-  - RULE-SET,microsoft_domain,🪟 Microsoft
-  - RULE-SET,apple_domain,直连
-  - RULE-SET,tiktok_domain,🎵 TikTok
-  - RULE-SET,telegram_domain,📲 Telegram
-  - RULE-SET,netflix_domain,🎥 NETFLIX
-  - RULE-SET,paypal_domain,💶 PayPal
-  
-#  
-  - RULE-SET,apple_ip,直连
-  - RULE-SET,google_ip,🍀 Google
-  - RULE-SET,netflix_ip,🎥 NETFLIX
-  - RULE-SET,telegram_ip,📲 Telegram
-  
-
-# 补漏
-  - RULE-SET,geolocation-!cn,🚀 默认代理
-  - RULE-SET,cn_domain,直连
-  - RULE-SET,cn_ip,直连
-  - MATCH,🐟 漏网之鱼
 
 # 规则集
 ## type：可选http/file/inline  behavior：可选domain/ipcidr/classical format：可选yaml/text/mrs
@@ -235,13 +192,13 @@ rule-providers:
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
   tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-#  ehentai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/ehentai.mrs"}
+  ehentai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/ehentai.mrs"}
   
-  # 下载规则集
+# 下载规则集
   game_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"}
   android_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-android-app-download.mrs"}
 
-# 不要动
+# 不要动!
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
   cn_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs"}
   
@@ -251,3 +208,52 @@ rule-providers:
   telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
+
+
+
+# 规则匹配
+rules:
+
+# 私有ip和域名直连
+  - RULE-SET,private_ip,直连,no-resolve
+  - RULE-SET,private_domain,直连
+
+# 下面写自定义规则
+  - DOMAIN-SUFFIX,qichiyu.com,🚀 默认代理
+  - DOMAIN,proxy.nanodaaa.net,🚀 默认代理  # 走代理
+  - DOMAIN-SUFFIX,nanodaaa.net,直连  # nanodaaa.net
+  
+# 默认规则
+  - RULE-SET,proxylite,🚀 默认代理
+
+# 下载规则
+  - RULE-SET,game_download,📦 廉价节点
+  - RULE-SET,android_download,📦 廉价节点
+
+#  在这下面写应用规则
+  - RULE-SET,ai,🤖 ChatGPT
+  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+  - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,google_domain,🍀 Google
+  - RULE-SET,onedrive_domain,🐬 OneDrive
+  - RULE-SET,microsoft_domain,🪟 Microsoft
+  - RULE-SET,apple_domain,直连
+  - RULE-SET,tiktok_domain,🎵 TikTok
+  - RULE-SET,telegram_domain,📲 Telegram
+  - RULE-SET,netflix_domain,🎥 NETFLIX
+  - RULE-SET,paypal_domain,💶 PayPal
+  - RULE-SET,ehentai_domain,🌐 EHentai
+  
+#  
+  - RULE-SET,apple_ip,直连
+  - RULE-SET,google_ip,🍀 Google
+  - RULE-SET,netflix_ip,🎥 NETFLIX
+  - RULE-SET,telegram_ip,📲 Telegram
+  
+
+# 补漏
+  - RULE-SET,geolocation-!cn,🚀 默认代理
+  - RULE-SET,cn_domain,直连
+  - RULE-SET,cn_ip,直连
+  - MATCH,🐟 漏网之鱼
+
