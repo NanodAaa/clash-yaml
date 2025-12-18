@@ -15,7 +15,7 @@ proxy-providers:
     proxy: 直连
 
   # 次要
-  Secondary:
+  secondary:
     url: ""
     type: http
     interval: 86400
@@ -123,9 +123,12 @@ proxy-groups:
   - {name: 📦 下载专用, type: select, proxies: [🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 香港自动-secondary, ♻️ 日本自动-secondary, ♻️ 美国自动-secondary, ♻️ 自动选择-secondary, 🌐 全部节点, 直连]}
 
 # 下面写应用规则组
-  - {name: 📹 YouTube, <<: *select_common}
-  - {name: 🍀 Google, <<: *select_common}
   - {name: 🤖 ChatGPT, <<: *select_common}
+  - {name: 🌐 EHentai, <<: *select_common}
+
+
+  - {name: 🍀 Google, <<: *select_common}
+  - {name: 📹 YouTube, <<: *select_common}
   - {name: 👨🏿‍💻 GitHub, <<: *select_common}
   - {name: 🐬 OneDrive, <<: *select_common}
   - {name: 🪟 Microsoft, <<: *select_common}
@@ -133,7 +136,6 @@ proxy-groups:
   - {name: 📲 Telegram, <<: *select_common}
   - {name: 🎥 NETFLIX, <<: *select_common}
   - {name: 💶 PayPal, <<: *select_common}
-  - {name: 🌐 EHentai, <<: *select_common}
 
 # 不要动!
   - {name: 🐟 漏网之鱼, <<: *select_common}
@@ -216,7 +218,6 @@ rule-providers:
 
 # 规则匹配
 rules:
-
 # 私有ip和域名直连
   - RULE-SET,private_ip,直连,no-resolve
   - RULE-SET,private_domain,直连
@@ -230,8 +231,8 @@ rules:
   - RULE-SET,proxylite,🚀 默认代理
 
 # 下载规则
-  - RULE-SET,game_download,📦 廉价节点
-  - RULE-SET,android_download,📦 廉价节点
+  - RULE-SET,game_download,📦 下载专用
+  - RULE-SET,android_download,📦 下载专用
 
 #  在这下面写应用规则
   - RULE-SET,ai,🤖 ChatGPT
