@@ -4,7 +4,7 @@
 # 机场订阅
 proxy-providers:
   # 主要
-  Main:
+  main:
     url: ""
     type: http
     interval: 86400
@@ -15,7 +15,7 @@ proxy-providers:
     proxy: 直连
 
   # 次要
-  Cheap:
+  Secondary:
     url: ""
     type: http
     interval: 86400
@@ -116,12 +116,12 @@ dns:
 # 如果相应分组没有筛选到对应的国家，请根据自己节点名字调整筛选关键字。
 
 proxy-group-anchor:
-  select_common: &select_common {type: select, proxies: [🔯 日本故转, 🔯 香港故转, 🔯 狮城故转, 🔯 美国故转, 🔯 日本故转-Cheap, 🔯 香港故转-Cheap, 🔯 美国故转-Cheap, ♻️ 香港自动, ♻️ 日本自动, ♻️ 狮城自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-Cheap, ♻️ 香港自动-Cheap, ♻️ 美国自动-Cheap, 🇭🇰 香港节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🇺🇲 美国节点, 🌐 全部节点, 直连]}
+  select_common: &select_common {type: select, proxies: [🇯🇵 日本节点, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🔯 日本故转, 🔯 香港故转, 🔯 美国故转, 🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 日本自动, ♻️ 香港自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-secondary, ♻️ 香港自动-secondary, ♻️ 美国自动-secondary, 🌐 全部节点, 直连]}
 
 proxy-groups:
   - {name: 🚀 默认代理, <<: *select_common}
-  - {name: 📦 廉价节点, type: select, proxies: [🔯 日本故转-Cheap, 🔯 香港故转-Cheap, 🔯 美国故转-Cheap, ♻️ 香港自动-Cheap, ♻️ 日本自动-Cheap, ♻️ 美国自动-Cheap, ♻️ 自动选择-Cheap, 直连]}
- 
+  - {name: 📦 下载专用, type: select, proxies: [🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 香港自动-secondary, ♻️ 日本自动-secondary, ♻️ 美国自动-secondary, ♻️ 自动选择-secondary, 🌐 全部节点, 直连]}
+
 # 下面写应用规则组
   - {name: 📹 YouTube, <<: *select_common}
   - {name: 🍀 Google, <<: *select_common}
@@ -139,30 +139,33 @@ proxy-groups:
   - {name: 🐟 漏网之鱼, <<: *select_common}
 
 # 下面写节点组
-  - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇯🇵 日本节点, type: select, include-all: true, filter: "(?i)日|jp|japan"}
-  - {name: 🇸🇬 狮城节点, type: select, include-all: true, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
+  - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
   - {name: 🇺🇲 美国节点, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
-  
-  - {name: 🔯 香港故转-Cheap, type: fallback, use: [Cheap], tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: 🔯 日本故转-Cheap, type: fallback, use: [Cheap], tolerance: 20, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: 🔯 美国故转-Cheap, type: fallback, use: [Cheap], tolerance: 20, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"}
-  
-  - {name: 🔯 香港故转, type: fallback, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: 🔯 日本故转, type: fallback, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: 🔯 狮城故转, type: fallback, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(台|日|韩|深|美)).)*$"}
-  - {name: 🔯 美国故转, type: fallback, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$" }
+  - {name: 🇸🇬 狮城节点, type: select, include-all: true, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
 
-  - {name: ♻️ 香港自动-Cheap, type: url-test, use: [Cheap], tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: ♻️ 日本自动-Cheap, type: url-test, use: [Cheap], tolerance: 20, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: ♻️ 美国自动-Cheap, type: url-test, use: [Cheap], tolerance: 20, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: ♻️ 自动选择-Cheap, type: url-test, use: [Cheap], tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
+#  - {name: 🔯 香港故转-main, type: fallback, use: [main], tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+#  - {name: 🔯 日本故转-main, type: fallback, use: [main], tolerance: 20, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+#  - {name: 🔯 美国故转-main, type: fallback, use: [main], tolerance: 20, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"}
+
+  - {name: 🔯 日本故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: 🔯 香港故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: 🔯 美国故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$" }
+
+  - {name: 🔯 日本故转-secondary, type: fallback, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: 🔯 香港故转-secondary, type: fallback, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: 🔯 美国故转-secondary, type: fallback, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"}
   
-  - {name: ♻️ 香港自动, type: url-test, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: ♻️ 日本自动, type: url-test, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: ♻️ 狮城自动, type: url-test, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(新加坡|坡|狮城|SG|Singapore))^((?!(港|台|韩|日|美)).)*$" }
-  - {name: ♻️ 美国自动, type: url-test, use: [Main], tolerance: 20, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: ♻️ 自动选择, type: url-test, use: [Main], tolerance: 20, interval: 300, filter: "^((?!(直连)).)*$"}
+  - {name: ♻️ 日本自动, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: ♻️ 香港自动, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: ♻️ 美国自动, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: ♻️ 自动选择, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "^((?!(直连)).)*$"}
+
+  - {name: ♻️ 日本自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: ♻️ 香港自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: ♻️ 美国自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: ♻️ 自动选择-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "^((?!(直连)).)*$"}
+
   - {name: 🌐 全部节点, type: select, include-all: true}
 
 
