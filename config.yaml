@@ -1,4 +1,4 @@
-# config.yaml v1.5
+# config.yaml v1.6
 # 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
 # 跑裸核用户请自行去掉下方控制面板模块的注释。
 # 机场订阅
@@ -112,20 +112,23 @@ proxy-groups:
   - {name: 🚀 默认代理, <<: *select_common}
   - {name: 📦 下载专用, type: select, proxies: [🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 香港自动-secondary, ♻️ 日本自动-secondary, ♻️ 美国自动-secondary, ♻️ 自动选择-secondary, 🌐 全部节点, 直连]}
 
+# 下面写应用整合集规则组
+  - {name: 📲 社交软件, <<: *select_common}
+
 # 下面写应用规则组
   - {name: 🤖 ChatGPT, <<: *select_common}
   - {name: 🌐 EHentai, <<: *select_common}
-
-
-  - {name: 🍀 Google, <<: *select_common}
   - {name: 📹 YouTube, <<: *select_common}
-  - {name: 👨🏿‍💻 GitHub, <<: *select_common}
-  - {name: 🐬 OneDrive, <<: *select_common}
-  - {name: 🪟 Microsoft, <<: *select_common}
-  - {name: 🎵 TikTok, <<: *select_common}
-  - {name: 📲 Telegram, <<: *select_common}
+  - {name: 🍀 Google, <<: *select_common}
   - {name: 🎥 NETFLIX, <<: *select_common}
   - {name: 💶 PayPal, <<: *select_common}
+
+
+#  - {name: 👨🏿‍💻 GitHub, <<: *select_common}
+#  - {name: 🐬 OneDrive, <<: *select_common}
+#  - {name: 🪟 Microsoft, <<: *select_common}
+#  - {name: 🎵 TikTok, <<: *select_common}
+#  - {name: 📲 Telegram, <<: *select_common}
 
 # 不要动!
   - {name: 🐟 漏网之鱼, <<: *select_common}
@@ -174,24 +177,30 @@ rule-providers:
   ai: {  <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-ai-!cn.mrs" }
   
 # 在下面写应用规则集
+  ehentai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/ehentai.mrs"}
   steam_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/steam.mrs" }
   epic_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/epicgames.mrs" }
   youtube_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/youtube.mrs"}
   google_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/google.mrs"}
-  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
-  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   netflix_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/netflix.mrs"}
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
-  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
-  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
-  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-  ehentai_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geosite/ehentai.mrs"}
+
+#  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
+#  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
+#  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
+#  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
+#  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
   
 # 下载规则集
   game_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"}
   android_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-android-app-download.mrs"}
+  
+# 整合规则集
+  # 通信服务合集 (discord, line, whatsapp...)
+  category-communication_domian: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-communication.mrs"}
+
 
 # 不要动!
   geolocation-!cn: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/geolocation-!cn.mrs"}
@@ -200,10 +209,10 @@ rule-providers:
   private_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/private.mrs"}
   cn_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs"}
   google_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/google.mrs"}
-  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
 
+#  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
 
 
 # 规则匹配
@@ -224,25 +233,33 @@ rules:
   - RULE-SET,game_download,📦 下载专用
   - RULE-SET,android_download,📦 下载专用
 
-#  在这下面写应用规则
+# 在下面写应用整合规则
+  - RULE-SET,category-communication_domian,📲 社交软件
+
+#  在这下面写应用域名规则
   - RULE-SET,ai,🤖 ChatGPT
-  - RULE-SET,github_domain,👨🏿‍💻 GitHub
   - RULE-SET,youtube_domain,📹 YouTube
+  - RULE-SET,ehentai_domain,🌐 EHentai
   - RULE-SET,google_domain,🍀 Google
-  - RULE-SET,onedrive_domain,🐬 OneDrive
-  - RULE-SET,microsoft_domain,🪟 Microsoft
-  - RULE-SET,apple_domain,直连
-  - RULE-SET,tiktok_domain,🎵 TikTok
-  - RULE-SET,telegram_domain,📲 Telegram
   - RULE-SET,netflix_domain,🎥 NETFLIX
   - RULE-SET,paypal_domain,💶 PayPal
-  - RULE-SET,ehentai_domain,🌐 EHentai
+
+
+  - RULE-SET,apple_domain,直连
+
   
-#  
+#  - RULE-SET,github_domain,👨🏿‍💻 GitHub
+#  - RULE-SET,onedrive_domain,🐬 OneDrive
+#  - RULE-SET,microsoft_domain,🪟 Microsoft
+#  - RULE-SET,tiktok_domain,🎵 TikTok
+#  - RULE-SET,telegram_domain,📲 Telegram
+
+#  在下面写应用 ip 规则
   - RULE-SET,apple_ip,直连
   - RULE-SET,google_ip,🍀 Google
   - RULE-SET,netflix_ip,🎥 NETFLIX
-  - RULE-SET,telegram_ip,📲 Telegram
+
+#  - RULE-SET,telegram_ip,📲 Telegram
   
 
 # 补漏
