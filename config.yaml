@@ -1,4 +1,4 @@
-# config.yaml v1.4
+# config.yaml v1.5
 # 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
 # 跑裸核用户请自行去掉下方控制面板模块的注释。
 # 机场订阅
@@ -92,18 +92,8 @@ dns:
   listen: 0.0.0.0:1053
   ipv6: false
   respect-rules: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 28.0.0.1/8
-  fake-ip-filter-mode: blacklist
-  fake-ip-filter:
-    - "*"
-    - "+.lan"
-    - "+.local"
-    - "rule-set:private_domain,cn_domain"
-    - "+.msftconnecttest.com"
-    - "+.msftncsi.com"
-    - "time.*.com"
-    - "+.market.xiaomi.com"
+  enhanced-mode: redir-host
+
   default-nameserver:
     - 223.5.5.5
   proxy-server-nameserver:
