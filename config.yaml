@@ -1,4 +1,4 @@
-# config.yaml v1.6
+# config.yaml v1.5
 # 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
 # 跑裸核用户请自行去掉下方控制面板模块的注释。
 # 机场订阅
@@ -222,9 +222,11 @@ rules:
   - RULE-SET,private_domain,直连
 
 # 下面写自定义规则
-  - DOMAIN-SUFFIX,qichiyu.com,🚀 默认代理
-  - DOMAIN,proxy.nanodaaa.net,🚀 默认代理  # 走代理
-  - DOMAIN-SUFFIX,nanodaaa.net,直连  # nanodaaa.net
+  # nanodaaa.net
+  - DOMAIN,ssh.nanodaaa.net,直连
+  - DOMAIN,ftp.nanodaaa.net,直连
+  - DOMAIN,direct.nanodaaa.net,直连  # 直连
+  - DOMAIN-SUFFIX,nanodaaa.net,🚀 默认代理
   
 # 默认规则
   - RULE-SET,proxylite,🚀 默认代理

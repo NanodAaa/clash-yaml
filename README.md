@@ -9,6 +9,7 @@
 - 更改 enhanced-mode 为 redir-host.
 - 新增 category-communication_domian 规则集.
 - 移除了一些使用频率极少的代理组.
+- 修改了 nanodaaa.net 的规则
 
 ### v1.4 2025-12-18
 - 新增 ehentai 代理组及相关规则.
