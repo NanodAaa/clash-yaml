@@ -109,7 +109,7 @@ proxy-group-anchor:
   select_common: &select_common {type: select, proxies: [🚀 默认代理, 🇯🇵 日本节点, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🔯 日本故转, 🔯 香港故转, 🔯 美国故转, 🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 日本自动, ♻️ 香港自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-secondary, ♻️ 香港自动-secondary, ♻️ 美国自动-secondary, 🌐 全部节点, 直连]}
 
 proxy-groups:
-  - {name: 🚀 默认代理, type: select, proxies: [🚀 默认代理, 🇯🇵 日本节点, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🔯 日本故转, 🔯 香港故转, 🔯 美国故转, 🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 日本自动, ♻️ 香港自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-secondary, ♻️ 香港自动-secondary, ♻️ 美国自动-secondary, 🌐 全部节点, 直连]}
+  - {name: 🚀 默认代理, type: select, proxies: [🇯🇵 日本节点, 🇭🇰 香港节点, 🇺🇲 美国节点, 🇸🇬 狮城节点, 🔯 日本故转, 🔯 香港故转, 🔯 美国故转, 🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 日本自动, ♻️ 香港自动, ♻️ 美国自动, ♻️ 自动选择, ♻️ 日本自动-secondary, ♻️ 香港自动-secondary, ♻️ 美国自动-secondary, 🌐 全部节点, 直连]}
   - {name: 📦 下载专用, type: select, proxies: [🔯 日本故转-secondary, 🔯 香港故转-secondary, 🔯 美国故转-secondary, ♻️ 香港自动-secondary, ♻️ 日本自动-secondary, ♻️ 美国自动-secondary, ♻️ 自动选择-secondary, 🌐 全部节点, 直连]}
 
 # 下面写应用整合集规则组
