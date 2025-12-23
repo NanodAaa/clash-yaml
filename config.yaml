@@ -117,51 +117,34 @@ proxy-groups:
 
 # 下面写应用规则组
   - {name: 🤖 ChatGPT, <<: *select_common}
-#  - {name: 🌐 EHentai, <<: *select_common}
-#  - {name: 📹 YouTube, <<: *select_common}
-#  - {name: 🍀 Google, <<: *select_common}
-#  - {name: 🎥 NETFLIX, <<: *select_common}
-#  - {name: 💶 PayPal, <<: *select_common}
-
-
-#  - {name: 👨🏿‍💻 GitHub, <<: *select_common}
-#  - {name: 🐬 OneDrive, <<: *select_common}
-#  - {name: 🪟 Microsoft, <<: *select_common}
-#  - {name: 🎵 TikTok, <<: *select_common}
-#  - {name: 📲 Telegram, <<: *select_common}
-
-# 不要动!
-#  - {name: 🐟 漏网之鱼, <<: *select_common}
+  - {name: 🌐 EHentai, <<: *select_common}
 
 # 下面写节点组
-  - {name: 🇯🇵 日本节点, type: select, include-all: true, filter: "(?i)日|jp|japan"}
-  - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
-  - {name: 🇺🇲 美国节点, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
-  - {name: 🇸🇬 狮城节点, type: select, include-all: true, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
-
-#  - {name: 🔯 香港故转-main, type: fallback, use: [main], tolerance: 20, interval: 300, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-#  - {name: 🔯 日本故转-main, type: fallback, use: [main], tolerance: 20, interval: 300, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-#  - {name: 🔯 美国故转-main, type: fallback, use: [main], tolerance: 20, interval: 300, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"}
-
   - {name: 🔯 日本故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: 🇯🇵 日本节点, type: select, include-all: true, filter: "(?i)日|jp|japan"}
+  - {name: ♻️ 日本自动, type: url-test, use: [main], tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  
   - {name: 🔯 香港故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: 🇭🇰 香港节点, type: select, include-all: true, filter: "(?i)港|hk|hongkong|hong kong"}
+  - {name: ♻️ 香港自动, type: url-test, use: [main], tolerance: 2, interval: 15, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+
   - {name: 🔯 美国故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$" }
+  - {name: 🇺🇲 美国节点, type: select, include-all: true, filter: "(?i)美|us|unitedstates|united states"}
+  - {name: ♻️ 美国自动, type: url-test, use: [main], tolerance: 2, interval: 15, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
+
+  - {name: 🇸🇬 狮城节点, type: select, include-all: true, filter: "(?i)新加坡|坡|狮城|SG|Singapore"}
+  - {name: ♻️ 自动选择, type: url-test, use: [main], tolerance: 2, interval: 15, filter: "^((?!(直连)).)*$"}
+  - {name: 🌐 全部节点, type: select, include-all: true}
 
   - {name: 🔯 日本故转-secondary, type: fallback, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
   - {name: 🔯 香港故转-secondary, type: fallback, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
   - {name: 🔯 美国故转-secondary, type: fallback, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|韩|新|日)).)*$"}
   
-  - {name: ♻️ 日本自动, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: ♻️ 香港自动, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: ♻️ 美国自动, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: ♻️ 自动选择, type: url-test, use: [main], tolerance: 2, interval: 30, filter: "^((?!(直连)).)*$"}
+  - {name: ♻️ 日本自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
+  - {name: ♻️ 香港自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
+  - {name: ♻️ 美国自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 15, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
+  - {name: ♻️ 自动选择-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 15, filter: "^((?!(直连)).)*$"}
 
-  - {name: ♻️ 日本自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
-  - {name: ♻️ 香港自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "(?=.*(港|HK|(?i)Hong))^((?!(台|日|韩|新|深|美)).)*$"}
-  - {name: ♻️ 美国自动-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "(?=.*(美|US|(?i)States|America))^((?!(港|台|日|韩|新)).)*$"}
-  - {name: ♻️ 自动选择-secondary, type: url-test, use: [secondary], tolerance: 2, interval: 30, filter: "^((?!(直连)).)*$"}
-
-  - {name: 🌐 全部节点, type: select, include-all: true}
 
 
 # 规则集
@@ -187,12 +170,6 @@ rule-providers:
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
 
-#  github_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/github.mrs"}
-#  onedrive_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/onedrive.mrs"}
-#  microsoft_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft.mrs"}
-#  tiktok_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/tiktok.mrs"}
-#  telegram_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/telegram.mrs"}
-  
 # 下载规则集
   game_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"}
   android_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-android-app-download.mrs"}
