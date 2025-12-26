@@ -117,7 +117,7 @@ proxy-groups:
 
 # 下面写应用规则组
   - {name: 🤖 ChatGPT, <<: *select_common}
-  - {name: 🌐 EHentai, <<: *select_common}
+#  - {name: 🌐 EHentai, <<: *select_common}
 
 # 下面写节点组
   - {name: 🔯 日本故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
@@ -218,15 +218,17 @@ rules:
   - RULE-SET,category-communication_domian,📲 社交软件
 
 #  在这下面写应用域名规则
+  - RULE-SET,apple_domain,直连
   - RULE-SET,ai,🤖 ChatGPT
+  - RULE-SET,ehentai_domain,🔯 美国故转
+  - RULE-SET,teamviewer_domain,直连
+
+
+
 #  - RULE-SET,youtube_domain,📹 YouTube
-#  - RULE-SET,ehentai_domain,🌐 EHentai
 #  - RULE-SET,google_domain,🍀 Google
 #  - RULE-SET,netflix_domain,🎥 NETFLIX
 #  - RULE-SET,paypal_domain,💶 PayPal
-  - RULE-SET,apple_domain,直连
-  - RULE-SET,teamviewer_domain,直连
-
   
 #  - RULE-SET,github_domain,👨🏿‍💻 GitHub
 #  - RULE-SET,onedrive_domain,🐬 OneDrive
