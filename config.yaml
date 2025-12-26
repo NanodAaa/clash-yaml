@@ -169,6 +169,8 @@ rule-providers:
   paypal_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/paypal.mrs"}
   apple_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple.mrs"}
   speedtest_domain: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/ookla-speedtest.mrs"}
+  teamviewer_domain: { type: http, interval: 86400, behavior: domain, format: text, url: "https://raw.githubusercontent.com/NanodAaa/clash-yaml/rules/teamviewer.list"}
+
 
 # 下载规则集
   game_download: { <<: *domain, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/category-game-platforms-download.mrs"}
@@ -223,6 +225,7 @@ rules:
 #  - RULE-SET,netflix_domain,🎥 NETFLIX
 #  - RULE-SET,paypal_domain,💶 PayPal
   - RULE-SET,apple_domain,直连
+  - RULE-SET,teamviewer_domain,直连
 
   
 #  - RULE-SET,github_domain,👨🏿‍💻 GitHub
