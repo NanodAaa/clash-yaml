@@ -1,4 +1,5 @@
 # config.yaml v1.6
+
 # 注意规则在满足自己需求情况下，尽量做到精简，不要过度复杂，以免影响性能。
 # 跑裸核用户请自行去掉下方控制面板模块的注释。
 # 机场订阅
@@ -117,7 +118,6 @@ proxy-groups:
 
 # 下面写应用规则组
   - {name: 🤖 ChatGPT, <<: *select_common}
-#  - {name: 🌐 EHentai, <<: *select_common}
 
 # 下面写节点组
   - {name: 🔯 日本故转, type: fallback, include-all: true, tolerance: 2, interval: 15, filter: "(?=.*(日|JP|(?i)Japan))^((?!(港|台|韩|新|美)).)*$" }
@@ -191,7 +191,7 @@ rule-providers:
   netflix_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/netflix.mrs"}
   apple_ip: {<<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo-lite/geoip/apple.mrs"}
 
-#  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
+  telegram_ip: { <<: *ip, url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/telegram.mrs"}
 
 
 # 规则匹配
@@ -223,26 +223,8 @@ rules:
   - RULE-SET,ehentai_domain,🔯 美国故转
   - RULE-SET,teamviewer_domain,直连
 
-
-
-#  - RULE-SET,youtube_domain,📹 YouTube
-#  - RULE-SET,google_domain,🍀 Google
-#  - RULE-SET,netflix_domain,🎥 NETFLIX
-#  - RULE-SET,paypal_domain,💶 PayPal
-  
-#  - RULE-SET,github_domain,👨🏿‍💻 GitHub
-#  - RULE-SET,onedrive_domain,🐬 OneDrive
-#  - RULE-SET,microsoft_domain,🪟 Microsoft
-#  - RULE-SET,tiktok_domain,🎵 TikTok
-#  - RULE-SET,telegram_domain,📲 Telegram
-
 #  在下面写应用 ip 规则
   - RULE-SET,apple_ip,直连
-#  - RULE-SET,google_ip,🍀 Google
-#  - RULE-SET,netflix_ip,🎥 NETFLIX
-
-#  - RULE-SET,telegram_ip,📲 Telegram
-  
 
 # 补漏
   - RULE-SET,geolocation-!cn,🚀 默认代理
